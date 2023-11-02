@@ -1,7 +1,7 @@
 #' SPC_DSM
-#' @description A single linear model with dispersion summation minimization
+#' @description A single linear model with dispersion summation minimization.
 #' @details This function is to process phase error correction through a single linear model with dispersion summation minimization,
-#' followed by Polynomial baseline correction
+#' followed by Polynomial baseline correction.
 #' @param specdat A complex number vector of observed frequency domain data
 #' @return A numeric vector of phase corrected absorption spectrum
 #' @concept phase correction
@@ -43,7 +43,7 @@ SPC_DSM = function (specdat){
   angles=bestPh[1]+bestPh[2]*c(1:nn)/nn
 
   dat3col=cbind(hdat, angles)
-  phasedDat=t(apply(dat3col, 1, phaseCorr2)) ### output is a two column matrix: the phased real and the phased imaginary of freq data
+  phasedDat=t(apply(dat3col, 1, phaseCorr2))
 
   ##### return phased plus baseline corrected spectrum
   tryBL=baseline(t(phasedDat[,1]),method="modpolyfit")

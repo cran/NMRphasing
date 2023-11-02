@@ -21,8 +21,13 @@ First of all, please ensure that you have the R package MassSpecWavelet, which i
 if (!requireNamespace("BiocManager", quietly = TRUE)) install.packages("BiocManager")
 BiocManager::install("MassSpecWavelet")
 
+NMRphasing is available on CRAN, and we can directly install it in R:
 
-Now, let's proceed to install NMRphasing from GitHub.
+```{r eval = FALSE}
+install.packages("NMRphasing")
+```
+
+Alternatively, let's proceed to install NMRphasing from GitHub.
 
 ```{r eval = FALSE}
 devtools :: install_github(repo = "ajiangsfu/NMRphasing",force = TRUE)  
@@ -48,128 +53,179 @@ str(fdat)
 In the code above, we load the dataset 'fdat' from the package. 'fdat$frequency_domain' represents the complex vector used in the following illustration, while 'freq' is utilized for plotting purposes. If your NMR data uses ppm values, you can substitute 'ppm' accordingly.
 
 
-```{r dpi = 300}
+```{r dpi = 200}
 
 ## in order to make comparison, absorption part can be extracted
 fdat$Observed_Absorption = Re(fdat$frequency_domain)
 
 library(ggpubr)
+
 p1 = ggplot(fdat, aes(x = ppm, y = Observed_Absorption)) +
       geom_line() + theme_bw() + labs(y = "Observed Absorption") +
       theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank(), axis.line = element_line(colour = "black"))
+        panel.background = element_blank(), axis.line = element_line(colour = "black"),
+        axis.title.x = element_text(size = 6), 
+        axis.title.y = element_text(size = 6))
 p1
 ```
 
 The observed absorption spectrum without phase error correction looks very bad.
 
 ## III. Example Code
-In this package, there are currently seven NMR phase error correction methods implemented. They are as follows: "SPC_DANM","NLS", "MPC_DANM", "MPC_EMP", "SPC_EMP", "SPC_AAM", and "SPC_DSM".
+In this package, there are currently nine NMR phase error correction methods implemented. They are as follows: "NLS", "SPC_DANM","MPC_DANM", "SPC_EMP", "MPC_EMP","SPC_AAM","MPC_AAM", "SPC_DSM" and "MPC_DSM".
 
-### 1. SPC_DANM
+### 1. NLS
+
+This is our new shrinkage method, which is the fastest phase error correction method since it does not involve any optimization step.
+
+```{r dpi=200}
+fdat$Phased_Absoprtion = NMRphasing(specDatIn = fdat$frequency_domain, method = "NLS") 
+
+p2 = ggplot(fdat, aes(x = ppm, y = Phased_Absoprtion)) +
+      geom_line() + theme_bw() + labs(y = "Phased Absoprtion") +
+        theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank(), axis.line = element_line(colour = "black"),
+        axis.title.x = element_text(size = 6), 
+        axis.title.y = element_text(size = 6))
+ggarrange(plotlist = list(p1,p2),labels = c("Before","After"),font.label = list(size = 6),nrow = 2, ncol=1)
+
+```
+
+
+### 2. SPC_DANM
 The "SPC_DANM" method employs the traditional single linear model approach for phase error correction but incorporates a new optimization function designed to minimize the difference between absolute area and net area.
 
-```{r dpi = 300}
+```{r dpi = 200}
 
 fdat$Phased_Absoprtion = NMRphasing(specDatIn = fdat$frequency_domain, method = "SPC_DANM") 
 
 p2 = ggplot(fdat, aes(x = ppm, y = Phased_Absoprtion)) +
       geom_line() + theme_bw() + labs(y = "Phased Absoprtion") +
         theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank(), axis.line = element_line(colour = "black"))
-ggarrange(plotlist = list(p1,p2),labels = c("Before","After"),font.label =10,nrow = 2, ncol=1)
+        panel.background = element_blank(), axis.line = element_line(colour = "black"),
+        axis.title.x = element_text(size = 6), 
+        axis.title.y = element_text(size = 6))
+ggarrange(plotlist = list(p1,p2),labels = c("Before","After"),font.label = list(size = 6),nrow = 2, ncol=1)
 
 ```
 
-### 2. NLS
-
-This is our new shrinkage method, which is the fastest phase error correction method since it does not involve any optimization step.
-
-
-```{r dpi = 300}
-fdat$Phased_Absoprtion = NMRphasing(specDatIn = fdat$frequency_domain, method = "NLS") 
-
-p2 = ggplot(fdat, aes(x = ppm, y = Phased_Absoprtion)) +
-      geom_line() + theme_bw() + labs(y = "Phased Absoprtion") +
-        theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank(), axis.line = element_line(colour = "black"))
-ggarrange(plotlist = list(p1,p2),labels = c("Before","After"),font.label =10,nrow = 2, ncol=1)
-
-```
 
 ### 3. MPC_DANM
 
 This approach utilizes our new multiple linear model for phase error correction along with our optimization function designed to minimize the difference between absolute area and net area.
 
-```{r dpi = 300}
+```{r dpi = 200}
 fdat$Phased_Absoprtion = NMRphasing(specDatIn = fdat$frequency_domain, method = "MPC_DANM") 
 
 p2 = ggplot(fdat, aes(x = ppm, y = Phased_Absoprtion)) +
       geom_line() + theme_bw() + labs(y = "Phased Absoprtion") +
         theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank(), axis.line = element_line(colour = "black"))
-ggarrange(plotlist = list(p1,p2),labels = c("Before","After"),font.label =10,nrow = 2, ncol=1)
+        panel.background = element_blank(), axis.line = element_line(colour = "black"),
+        axis.title.x = element_text(size = 6), 
+        axis.title.y = element_text(size = 6))
+ggarrange(plotlist = list(p1,p2),labels = c("Before","After"),font.label = list(size = 6),nrow = 2, ncol=1)
 
 ```
 
-
-### 4. MPC_EMP
-
-This is to apply our new multiple linear model approach for phase error correction based on an existing optimization function: entropy minimization with negative peak penalty.
-
-```{r dpi = 300}
-fdat$Phased_Absoprtion = NMRphasing(specDatIn = fdat$frequency_domain, method = "MPC_EMP") 
-
-p2 = ggplot(fdat, aes(x = ppm, y = Phased_Absoprtion)) +
-      geom_line() + theme_bw() + labs(y = "Phased Absoprtion") +
-        theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank(), axis.line = element_line(colour = "black"))
-ggarrange(plotlist = list(p1,p2),labels = c("Before","After"),font.label =10,nrow = 2, ncol=1)
-
-```
-
-### 5. SPC_EMP
+### 4. SPC_EMP
 
 This is an old phase error correction method based on the traditional single model approach targeting on an existing optimization function: entropy minimization with negative peak penalty.
 
-```{r dpi = 300}
+```{r dpi = 200}
 fdat$Phased_Absoprtion = NMRphasing(specDatIn = fdat$frequency_domain, method = "SPC_EMP") 
 
 p2 = ggplot(fdat, aes(x = ppm, y = Phased_Absoprtion)) +
       geom_line() + theme_bw() + labs(y = "Phased Absoprtion") +
         theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank(), axis.line = element_line(colour = "black"))
-ggarrange(plotlist = list(p1,p2),labels = c("Before","After"),font.label =10,nrow = 2, ncol=1)
+        panel.background = element_blank(), axis.line = element_line(colour = "black"),
+        axis.title.x = element_text(size = 6), 
+        axis.title.y = element_text(size = 6))
+ggarrange(plotlist = list(p1,p2),labels = c("Before","After"),font.label = list(size = 6),nrow = 2, ncol=1)
 
 ```
+
+### 5. MPC_EMP
+
+This is to apply our new multiple linear model approach for phase error correction based on an existing optimization function: entropy minimization with negative peak penalty.
+
+```{r dpi = 200}
+fdat$Phased_Absoprtion = NMRphasing(specDatIn = fdat$frequency_domain, method = "MPC_EMP") 
+
+p2 = ggplot(fdat, aes(x = ppm, y = Phased_Absoprtion)) +
+      geom_line() + theme_bw() + labs(y = "Phased Absoprtion") +
+        theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank(), axis.line = element_line(colour = "black"),
+        axis.title.x = element_text(size = 6), 
+        axis.title.y = element_text(size = 6))
+ggarrange(plotlist = list(p1,p2),labels = c("Before","After"),font.label = list(size = 6),nrow = 2, ncol=1)
+
+```
+
 
 ### 6. SPC_AAM
 
 This is an old phase error correction method based on the traditional single model approach with an existing optimization function: absolute area minimization.
 
-```{r dpi = 300}
+```{r dpi = 200}
 fdat$Phased_Absoprtion = NMRphasing(specDatIn = fdat$frequency_domain, method = "SPC_AAM") 
 
 p2 = ggplot(fdat, aes(x = ppm, y = Phased_Absoprtion)) +
       geom_line() + theme_bw() + labs(y = "Phased Absoprtion") +
         theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank(), axis.line = element_line(colour = "black"))
-ggarrange(plotlist = list(p1,p2),labels = c("Before","After"),font.label =10,nrow = 2, ncol=1)
+        panel.background = element_blank(), axis.line = element_line(colour = "black"),
+        axis.title.x = element_text(size = 6), 
+        axis.title.y = element_text(size = 6))
+ggarrange(plotlist = list(p1,p2),labels = c("Before","After"),font.label = list(size = 6),nrow = 2, ncol=1)
+```
+
+### 7. MPC_AAM
+
+This is to apply our new multiple linear model approach for phase error correction based on an existing optimization function:absolute area minimization.
+
+```{r dpi = 200}
+fdat$Phased_Absoprtion = NMRphasing(specDatIn = fdat$frequency_domain, method = "MPC_AAM") 
+
+p2 = ggplot(fdat, aes(x = ppm, y = Phased_Absoprtion)) +
+      geom_line() + theme_bw() + labs(y = "Phased Absoprtion") +
+        theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank(), axis.line = element_line(colour = "black"),
+        axis.title.x = element_text(size = 6), 
+        axis.title.y = element_text(size = 6))
+ggarrange(plotlist = list(p1,p2),labels = c("Before","After"),font.label = list(size = 6),nrow = 2, ncol=1)
 
 ```
 
-### 7. SPC_DSM
+### 8. SPC_DSM
 
 This is an old phase error correction method based on the traditional single model approach with an existing optimization function: dispersion summation minimization.
 
-```{r dpi = 300}
+```{r dpi = 200}
 fdat$Phased_Absoprtion = NMRphasing(specDatIn = fdat$frequency_domain, method = "SPC_DSM") 
 
 p2 = ggplot(fdat, aes(x = ppm, y = Phased_Absoprtion)) +
       geom_line() + theme_bw() + labs(y = "Phased Absoprtion") +
         theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-        panel.background = element_blank(), axis.line = element_line(colour = "black"))
-ggarrange(plotlist = list(p1,p2),labels = c("Before","After"), font.label =10,nrow = 2, ncol=1)
+        panel.background = element_blank(), axis.line = element_line(colour = "black"),
+        axis.title.x = element_text(size = 6), 
+        axis.title.y = element_text(size = 6))
+ggarrange(plotlist = list(p1,p2),labels = c("Before","After"),font.label = list(size = 6),nrow = 2, ncol=1)
+
+```
+
+### 9. MPC_DSM
+
+This is to apply our new multiple linear model approach for phase error correction based on an existing optimization function:dispersion summation minimization..
+
+```{r dpi = 200}
+fdat$Phased_Absoprtion = NMRphasing(specDatIn = fdat$frequency_domain, method = "MPC_DSM") 
+
+p2 = ggplot(fdat, aes(x = ppm, y = Phased_Absoprtion)) +
+      geom_line() + theme_bw() + labs(y = "Phased Absoprtion") +
+        theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank(), axis.line = element_line(colour = "black"),
+        axis.title.x = element_text(size = 6), 
+        axis.title.y = element_text(size = 6))
+ggarrange(plotlist = list(p1,p2),labels = c("Before","After"),font.label = list(size = 6),nrow = 2, ncol=1)
 
 ```
 
@@ -182,7 +238,7 @@ Authors@R: c(
          comment = c(ORCID = "0000-0002-6153-7595"))
 )
 Maintainer: Aixiang Jiang <aijiang@bccrc.ca>
-Depends: R (>= 4.2.0),stats
+Depends: R (>= 4.3.0),stats
 Suggests: knitr, rmarkdown, ggpubr
 VignetteBuilder: knitr
 Imports: baseline, splines, MassSpecWavelet

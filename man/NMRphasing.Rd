@@ -17,8 +17,8 @@ which 1st column is for absorption spectrum, and 2nd column is for dispersion sp
 
 \item{absorptionOnly}{A logical variable to tell us if specDatIn is a a vector of absorption specrtrum, default is false}
 
-\item{method}{One of phase correction method. There are seven methods right now, which are "NLS", "MPC_DAOM", "MPC_EMP", "SPC_DAOM", "SPC_EMP", "SPC_AAM", "SPC_DSM",
-with NLS, non-linear shrinkage as default}
+\item{method}{One of phase correction and baseline correction methods. There are nine available choices, which are "NLS", "MPC_DAOM", "MPC_EMP", "MPC_AAM", "MPC_DSM", "SPC_DAOM", "SPC_EMP", "SPC_AAM", "SPC_DSM",
+with "NLS", non-linear shrinkage as default.}
 }
 \value{
 A numeric vector of phase corrected absorption spectrum
@@ -27,7 +27,7 @@ A numeric vector of phase corrected absorption spectrum
 Phase error correction wrap up function
 }
 \details{
-This is a wrap function to process phase error correction with seven different choices, followed by Polynomial baseline correction when necessary
+This is a wrap function to process phase error correction and baseline correction with nine different choices.
 }
 \examples{
 data("fdat")

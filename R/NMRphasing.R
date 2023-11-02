@@ -1,12 +1,12 @@
 #' NMRphasing
 #' @description Phase error correction wrap up function
-#' @details This is a wrap function to process phase error correction with seven different choices, followed by Polynomial baseline correction when necessary
+#' @details This is a wrap function to process phase error correction and baseline correction with nine different choices.
 #' @param specDatIn Input spectrum data, which can be one of the four formats:
 #'                a vector of absorption spectrum; a complex vector; a data matrix or a data frame with two columns of spectrum data,
 #'                which 1st column is for absorption spectrum, and 2nd column is for dispersion spectrum
 #' @param absorptionOnly A logical variable to tell us if specDatIn is a a vector of absorption specrtrum, default is false
-#' @param method One of phase correction method. There are seven methods right now, which are "NLS", "MPC_DAOM", "MPC_EMP", "SPC_DAOM", "SPC_EMP", "SPC_AAM", "SPC_DSM",
-#'               with NLS, non-linear shrinkage as default
+#' @param method One of phase correction and baseline correction methods. There are nine available choices, which are "NLS", "MPC_DAOM", "MPC_EMP", "MPC_AAM", "MPC_DSM", "SPC_DAOM", "SPC_EMP", "SPC_AAM", "SPC_DSM",
+#'               with "NLS", non-linear shrinkage as default.
 #' @return A numeric vector of phase corrected absorption spectrum
 #' @concept phase error correction
 #' @author Aixiang Jiang
@@ -46,9 +46,13 @@ NMRphasing = function (specDatIn, absorptionOnly = FALSE, method = c("NLS", "MPC
   outdat = NA
 
   if(method == "MPC_DANM"){
-    outdat = MPC_DANM(specdat = datin)
+     outdat = MPC_DANM(specdat = datin)
   }else if(method == "MPC_EMP"){
      outdat = MPC_EMP(specdat = datin)
+  }else if(method == "MPC_AAM"){
+    outdat = MPC_AAM(specdat = datin)
+  }else if(method == "MPC_DSM"){
+    outdat = MPC_DSM(specdat = datin)
   }else if(method == "SPC_DANM"){
      outdat = SPC_DANM(specdat = datin)
   }else if(method == "SPC_EMP"){

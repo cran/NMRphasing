@@ -13,11 +13,11 @@ SPC_AAM(specdat)
 A numeric vector of phase corrected absorption spectrum
 }
 \description{
-A single linear model with minimization on absolute area
+A single linear model with minimization on absolute area.
 }
 \details{
 This function is to process phase error correction through a single linear model with minimization on absolute area, followed by
-   Polynomial baseline correction
+   Polynomial baseline correction.
 }
 \examples{
 data("fdat")

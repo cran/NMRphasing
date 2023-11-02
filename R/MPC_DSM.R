@@ -1,25 +1,29 @@
-#' MPC_EMP
-#' @description Multiple single linear models based on entropy minimization with negative peak penalty.
-#' @details This function is used to process phase error correction through multiple single linear models with entropy minimization with negative peak penalty, followed by Polynomial baseline correction when necessary.
+#' MPC_DSM
+#' @description Multiple single linear models that minimize the total dispersion.
+#' @details This function is used to process phase error correction through multiple single linear models that minimize the total dispersion, followed by Polynomial baseline correction when necessary.
 #' @param specdat A complex number vector of observed frequency domain data.
 #' @return A numeric vector of phase corrected absorption spectrum
 #' @concept phase correction
 #' @author Aixiang Jiang
 #' @references
+#' Chen, L., Weng, Z., Goh, L., & Garland, M. (2002). An efficient algorithm for automatic phase correction of NMR spectra based on
+#' entropy minimization. Journal of Magnetic Resonance, 158, 1-2.
 #'
-#' Binczyk F, Tarnawski R, Polanska J (2015) Strategies for optimizing the phase correction algorithms in Nuclear Magnetic Resonance spectroscopy. Biomed Eng Online 14 Suppl 2:S5.
+#' Ernst, R. R. (1969). Numerical Hilbert transform and automatic phase correction in magnetic resonance spectroscopy.
+#' Journal of Magnetic Resonance, 1, 7-26
 #'
-#' de Brouwer, H. (2009). Evaluation of algorithms for automated phase correction of NMR spectra. J Magn Reson, 201, 230-238.
-#'
-#' Liland KH, Almøy T, Mevik B (2010), Optimal Choice of Baseline Correction for Multivariate Calibration of Spectra, Applied Spectroscopy 64, pp. 1007-1016.
+#' Liland KH, Almøy T, Mevik B (2010), Optimal Choice of Baseline
+#' Correction for Multivariate Calibration of Spectra, Applied Spectroscopy 64, pp. 1007-1016.
+
+
 #' @examples
 #' data("fdat")
-#' mpc_emp_phased1 <- MPC_EMP(fdat$frequency_domain)
+#' mpc_dsm_phased1 <- MPC_DSM(fdat$frequency_domain)
 
 #' @export
 
 
-MPC_EMP = function(specdat){
+MPC_DSM = function(specdat){
 
   cplxDat=specdat
   pp=(Re(cplxDat))**2+(Im(cplxDat))**2
@@ -48,7 +52,7 @@ MPC_EMP = function(specdat){
   valleys=cbind(valleyL,valleyR)
 
   phasedComb=apply(valleys,1,FUN=function(x){
-    res=EMP(cplxDat[x[1]:x[2]])
+    res=DSM(cplxDat[x[1]:x[2]])
   })
 
   phasedAll=unlist(phasedComb)

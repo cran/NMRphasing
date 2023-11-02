@@ -17,7 +17,7 @@ A single linear model with Minimization of difference between absolute area and 
 }
 \details{
 This function is to process phase error correction through a single linear model with Minimization of difference between absolute area and net area,
-followed by Polynomial baseline correction when necessary
+followed by Polynomial baseline correction.
 }
 \examples{
 data("fdat")

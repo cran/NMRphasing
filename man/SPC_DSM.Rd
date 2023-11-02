@@ -13,11 +13,11 @@ SPC_DSM(specdat)
 A numeric vector of phase corrected absorption spectrum
 }
 \description{
-A single linear model with dispersion summation minimization
+A single linear model with dispersion summation minimization.
 }
 \details{
 This function is to process phase error correction through a single linear model with dispersion summation minimization,
-followed by Polynomial baseline correction
+followed by Polynomial baseline correction.
 }
 \examples{
 data("fdat")

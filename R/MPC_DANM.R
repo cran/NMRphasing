@@ -1,6 +1,6 @@
 #' MPC_DANM
-#' @description Multiple linear models with Minimization of the difference between absolute area and net area.
-#' @details This function processes phase error correction through multiple linear models with Minimization of the difference between absolute area and net area, followed by Polynomial baseline correction when necessary.
+#' @description Multiple linear models that minimize the difference between absolute area and net area.
+#' @details This function processes phase error correction through multiple linear models that minimize the difference between absolute area and net area, followed by Polynomial baseline correction when necessary.
 #' @param specdat A complex number vector of observed frequency domain data.
 #' @return A numeric vector of phase corrected absorption spectrum
 #' @concept phase correction

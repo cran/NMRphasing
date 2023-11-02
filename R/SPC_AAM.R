@@ -1,8 +1,8 @@
 
 #' SPC_AAM
-#' @description A single linear model with minimization on absolute area
+#' @description A single linear model with minimization on absolute area.
 #' @details  This function is to process phase error correction through a single linear model with minimization on absolute area, followed by
-#'    Polynomial baseline correction
+#'    Polynomial baseline correction.
 #' @param specdat A complex number vector of observed frequency domain data
 #' @return A numeric vector of phase corrected absorption spectrum
 #' @concept phase correction
@@ -35,14 +35,14 @@ SPC_AAM = function (specdat){
 
   #### get optimized parameters of ph0 and ph1
 
-  optimRes=stats::optim(par=c(ph0Initial,ph1Initial),fn=absArea, specDat=hdat) ### use default, no bounds
+  optimRes=stats::optim(par=c(ph0Initial,ph1Initial),fn=absArea, specDat=hdat)
   bestPh=optimRes$par
 
   nn=dim(hdat)[1]
   angles=bestPh[1]+bestPh[2]*c(1:nn)/nn
 
   dat3col=cbind(hdat, angles)
-  phasedDat=t(apply(dat3col, 1, phaseCorr2)) ### output is a two column matrix: the phased real and the phased imaginary of freq data
+  phasedDat=t(apply(dat3col, 1, phaseCorr2))
 
   ##### return phased plus baseline corrected spectrum
   tryBL=baseline::baseline(t(phasedDat[,1]),method="modpolyfit")

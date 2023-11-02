@@ -15,7 +15,7 @@ EMP = function (specIn){
   angles=bestPh[1]+bestPh[2]*c(1:nn)/nn
 
   dat3col=cbind(hdat, angles)
-  phasedDat=t(apply(dat3col, 1, phaseCorr2)) ### output is a two column matrix: the phased real and the phased imaginary of freq data
+  phasedDat=t(apply(dat3col, 1, phaseCorr2))
 
   return(phasedDat[,1])
 }

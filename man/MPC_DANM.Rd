@@ -13,10 +13,10 @@ MPC_DANM(specdat)
 A numeric vector of phase corrected absorption spectrum
 }
 \description{
-Multiple linear models with Minimization of the difference between absolute area and net area.
+Multiple linear models that minimize the difference between absolute area and net area.
 }
 \details{
-This function processes phase error correction through multiple linear models with Minimization of the difference between absolute area and net area, followed by Polynomial baseline correction when necessary.
+This function processes phase error correction through multiple linear models that minimize the difference between absolute area and net area, followed by Polynomial baseline correction when necessary.
 }
 \examples{
 data("fdat")

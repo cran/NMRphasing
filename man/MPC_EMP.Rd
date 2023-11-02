@@ -20,7 +20,7 @@ This function is used to process phase error correction through multiple single 
 }
 \examples{
 data("fdat")
-spc_emp_phased1 <- MPC_EMP(fdat$frequency_domain)
+mpc_emp_phased1 <- MPC_EMP(fdat$frequency_domain)
 }
 \references{
 Binczyk F, Tarnawski R, Polanska J (2015) Strategies for optimizing the phase correction algorithms in Nuclear Magnetic Resonance spectroscopy. Biomed Eng Online 14 Suppl 2:S5.
