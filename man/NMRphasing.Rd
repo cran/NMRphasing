@@ -7,7 +7,8 @@
 NMRphasing(
   specDatIn,
   absorptionOnly = FALSE,
-  method = c("NLS", "MPC_DANM", "MPC_EMP", "SPC_DANM", "SPC_EMP", "SPC_AAM", "SPC_DSM")
+  method = c("NLS", "MPC_DANM", "MPC_EMP", "MPC_AAM", "MPC_DSM", "SPC_DANM", "SPC_EMP",
+    "SPC_AAM", "SPC_DSM")
 )
 }
 \arguments{

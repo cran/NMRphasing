@@ -33,7 +33,8 @@
 #' @export
 
 
-NMRphasing = function (specDatIn, absorptionOnly = FALSE, method = c("NLS", "MPC_DANM", "MPC_EMP", "SPC_DANM", "SPC_EMP", "SPC_AAM", "SPC_DSM")){
+NMRphasing = function (specDatIn, absorptionOnly = FALSE,
+                       method = c("NLS", "MPC_DANM", "MPC_EMP","MPC_AAM", "MPC_DSM","SPC_DANM", "SPC_EMP", "SPC_AAM", "SPC_DSM")){
   datin = NA
   if(absorptionOnly){
     datin = HilbertWithFT(specDatIn)

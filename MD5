@@ -1,4 +1,4 @@
-7c2c2d4c38913bf1b925422917e739b6 *DESCRIPTION
+e99cfd6b6a0715a870dc3e243d743a77 *DESCRIPTION
 482c5c088bac8ecdb0959da99708001c *LICENSE
 6a5980eefb932a96dab805e8695e6325 *NAMESPACE
 99e8d5d81079b366b8fcd7ba7d0148e9 *R/AAM.R
@@ -11,7 +11,7 @@ ae0ed1f47e20f106843b49817beb682f *R/MPC_DANM.R
 eab2925168c3b50585b1efafeed4b2f4 *R/MPC_DSM.R
 9808753fe9d5a2e25cec0a393f2846d1 *R/MPC_EMP.R
 3f912e21683504ff153ed87ffd4eec70 *R/NLS.R
-487bcd2072bad508ef426f78c0e9d687 *R/NMRphasing.R
+fe254cc40d2b5dca9d39fee9bcbc2638 *R/NMRphasing.R
 8b4d2584eac3ef24dd4174e10441c2ee *R/SPC_AAM.R
 8a188ad203c02603db8e2978d44daab3 *R/SPC_DANM.R
 65a395d42153346b737d36afeb9f6515 *R/SPC_DSM.R
@@ -27,14 +27,14 @@ e0fdb7a01cb3889d17a51afc6dcd5d42 *R/myBaseline.R
 bfbb07a8cefe5c5aab3b1971c9c7f0df *build/vignette.rds
 81064af618c9f3c61b844bb34965e173 *data/fdat.rda
 7164f69b335f7b2ca47189c4aadfdc86 *inst/doc/NMRphasing_vignette.R
-c6da6d6c15bd019da8550669fc37820e *inst/doc/NMRphasing_vignette.html
+0f747b8425e70e1fa9611dc360725fdf *inst/doc/NMRphasing_vignette.html
 817b6aaa1d527f06a01ba9080a3c87a7 *inst/doc/NMRphasing_vignette.rmd
 df2625070aec9e4320ae2132be76e5a5 *man/MPC_AAM.Rd
 689a2ce284ae424ab5468c3573eda2f6 *man/MPC_DANM.Rd
 65bad5e4efb5cf71d0dd9b1c89dcf2f7 *man/MPC_DSM.Rd
 e049b6cc5a8c3bff2367cba836bf7bee *man/MPC_EMP.Rd
 082a9321b8c66af8271b2dcc2983a9b4 *man/NLS.Rd
-cf08ea42268b55d906159e914d007355 *man/NMRphasing.Rd
+7f008b3b5af0deb3410f7f49913881b5 *man/NMRphasing.Rd
 adcba30ac4a827d1f217513160915a13 *man/SPC_AAM.Rd
 2902420dd43d02474ea63c6d7e021566 *man/SPC_DANM.Rd
 2db359b4c89f9ee27014b6e727f5a20c *man/SPC_DSM.Rd
