@@ -37,6 +37,9 @@ p2 = ggplot(fdat, aes(x = ppm, y = Phased_Absoprtion)) +
 ggarrange(plotlist = list(p1,p2),labels = c("Before","After"),font.label = list(size = 6),nrow = 2, ncol=1)
 
 
+## ----eval=FALSE---------------------------------------------------------------
+#  fdat$Phased_Absoprtion = NMRphasing(specDatIn = fdat$frequency_domain, method = "NLS", withBC = FALSE)
+
 ## ----dpi = 200----------------------------------------------------------------
 
 fdat$Phased_Absoprtion = NMRphasing(specDatIn = fdat$frequency_domain, method = "SPC_DANM") 
