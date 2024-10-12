@@ -136,3 +136,27 @@ p2 = ggplot(fdat, aes(x = ppm, y = Phased_Absoprtion)) +
 ggarrange(plotlist = list(p1,p2),labels = c("Before","After"),font.label = list(size = 6),nrow = 2, ncol=1)
 
 
+## ----dpi = 200----------------------------------------------------------------
+fdat$Phased_Absoprtion = NMRphasing(specDatIn = fdat$frequency_domain, method = "SPC_ADSM") 
+
+p2 = ggplot(fdat, aes(x = ppm, y = Phased_Absoprtion)) +
+      geom_line() + theme_bw() + labs(y = "Phased Absoprtion") +
+        theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank(), axis.line = element_line(colour = "black"),
+        axis.title.x = element_text(size = 6), 
+        axis.title.y = element_text(size = 6))
+ggarrange(plotlist = list(p1,p2),labels = c("Before","After"),font.label = list(size = 6),nrow = 2, ncol=1)
+
+
+## ----dpi = 200----------------------------------------------------------------
+fdat$Phased_Absoprtion = NMRphasing(specDatIn = fdat$frequency_domain, method = "MPC_ADSM") 
+
+p2 = ggplot(fdat, aes(x = ppm, y = Phased_Absoprtion)) +
+      geom_line() + theme_bw() + labs(y = "Phased Absoprtion") +
+        theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank(), axis.line = element_line(colour = "black"),
+        axis.title.x = element_text(size = 6), 
+        axis.title.y = element_text(size = 6))
+ggarrange(plotlist = list(p1,p2),labels = c("Before","After"),font.label = list(size = 6),nrow = 2, ncol=1)
+
+
