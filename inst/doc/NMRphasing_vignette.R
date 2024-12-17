@@ -1,16 +1,16 @@
 ## ----eval = FALSE-------------------------------------------------------------
-#  install.packages("NMRphasing")
+# install.packages("NMRphasing")
 
 ## ----eval = FALSE-------------------------------------------------------------
-#  devtools :: install_github(repo = "ajiangsfu/NMRphasing",force = TRUE)
-#  ## if you do not have old versions of NMRphasing, please remove force = TRUE
+# devtools :: install_github(repo = "ajiangsfu/NMRphasing",force = TRUE)
+# ## if you do not have old versions of NMRphasing, please remove force = TRUE
 
 ## -----------------------------------------------------------------------------
 library(NMRphasing)
 data("fdat")
 str(fdat)
 
-## ----dpi = 200----------------------------------------------------------------
+## ----dpi = 96-----------------------------------------------------------------
 
 ## in order to make comparison, absorption part can be extracted
 fdat$Observed_Absorption = Re(fdat$frequency_domain)
@@ -38,9 +38,9 @@ ggarrange(plotlist = list(p1,p2),labels = c("Before","After"),font.label = list(
 
 
 ## ----eval=FALSE---------------------------------------------------------------
-#  fdat$Phased_Absoprtion = NMRphasing(specDatIn = fdat$frequency_domain, method = "NLS", withBC = FALSE)
+# fdat$Phased_Absoprtion = NMRphasing(specDatIn = fdat$frequency_domain, method = "NLS", withBC = FALSE)
 
-## ----dpi = 200----------------------------------------------------------------
+## ----dpi = 96-----------------------------------------------------------------
 
 fdat$Phased_Absoprtion = NMRphasing(specDatIn = fdat$frequency_domain, method = "SPC_DANM") 
 
@@ -53,7 +53,7 @@ p2 = ggplot(fdat, aes(x = ppm, y = Phased_Absoprtion)) +
 ggarrange(plotlist = list(p1,p2),labels = c("Before","After"),font.label = list(size = 6),nrow = 2, ncol=1)
 
 
-## ----dpi = 200----------------------------------------------------------------
+## ----dpi = 96-----------------------------------------------------------------
 fdat$Phased_Absoprtion = NMRphasing(specDatIn = fdat$frequency_domain, method = "MPC_DANM") 
 
 p2 = ggplot(fdat, aes(x = ppm, y = Phased_Absoprtion)) +
@@ -65,7 +65,7 @@ p2 = ggplot(fdat, aes(x = ppm, y = Phased_Absoprtion)) +
 ggarrange(plotlist = list(p1,p2),labels = c("Before","After"),font.label = list(size = 6),nrow = 2, ncol=1)
 
 
-## ----dpi = 200----------------------------------------------------------------
+## ----dpi = 96-----------------------------------------------------------------
 fdat$Phased_Absoprtion = NMRphasing(specDatIn = fdat$frequency_domain, method = "SPC_EMP") 
 
 p2 = ggplot(fdat, aes(x = ppm, y = Phased_Absoprtion)) +
@@ -77,7 +77,7 @@ p2 = ggplot(fdat, aes(x = ppm, y = Phased_Absoprtion)) +
 ggarrange(plotlist = list(p1,p2),labels = c("Before","After"),font.label = list(size = 6),nrow = 2, ncol=1)
 
 
-## ----dpi = 200----------------------------------------------------------------
+## ----dpi = 96-----------------------------------------------------------------
 fdat$Phased_Absoprtion = NMRphasing(specDatIn = fdat$frequency_domain, method = "MPC_EMP") 
 
 p2 = ggplot(fdat, aes(x = ppm, y = Phased_Absoprtion)) +
@@ -89,7 +89,7 @@ p2 = ggplot(fdat, aes(x = ppm, y = Phased_Absoprtion)) +
 ggarrange(plotlist = list(p1,p2),labels = c("Before","After"),font.label = list(size = 6),nrow = 2, ncol=1)
 
 
-## ----dpi = 200----------------------------------------------------------------
+## ----dpi = 96-----------------------------------------------------------------
 fdat$Phased_Absoprtion = NMRphasing(specDatIn = fdat$frequency_domain, method = "SPC_AAM") 
 
 p2 = ggplot(fdat, aes(x = ppm, y = Phased_Absoprtion)) +
@@ -100,7 +100,7 @@ p2 = ggplot(fdat, aes(x = ppm, y = Phased_Absoprtion)) +
         axis.title.y = element_text(size = 6))
 ggarrange(plotlist = list(p1,p2),labels = c("Before","After"),font.label = list(size = 6),nrow = 2, ncol=1)
 
-## ----dpi = 200----------------------------------------------------------------
+## ----dpi = 96-----------------------------------------------------------------
 fdat$Phased_Absoprtion = NMRphasing(specDatIn = fdat$frequency_domain, method = "MPC_AAM") 
 
 p2 = ggplot(fdat, aes(x = ppm, y = Phased_Absoprtion)) +
@@ -112,7 +112,7 @@ p2 = ggplot(fdat, aes(x = ppm, y = Phased_Absoprtion)) +
 ggarrange(plotlist = list(p1,p2),labels = c("Before","After"),font.label = list(size = 6),nrow = 2, ncol=1)
 
 
-## ----dpi = 200----------------------------------------------------------------
+## ----dpi = 96-----------------------------------------------------------------
 fdat$Phased_Absoprtion = NMRphasing(specDatIn = fdat$frequency_domain, method = "SPC_DSM") 
 
 p2 = ggplot(fdat, aes(x = ppm, y = Phased_Absoprtion)) +
@@ -124,7 +124,7 @@ p2 = ggplot(fdat, aes(x = ppm, y = Phased_Absoprtion)) +
 ggarrange(plotlist = list(p1,p2),labels = c("Before","After"),font.label = list(size = 6),nrow = 2, ncol=1)
 
 
-## ----dpi = 200----------------------------------------------------------------
+## ----dpi = 96-----------------------------------------------------------------
 fdat$Phased_Absoprtion = NMRphasing(specDatIn = fdat$frequency_domain, method = "MPC_DSM") 
 
 p2 = ggplot(fdat, aes(x = ppm, y = Phased_Absoprtion)) +
@@ -136,7 +136,7 @@ p2 = ggplot(fdat, aes(x = ppm, y = Phased_Absoprtion)) +
 ggarrange(plotlist = list(p1,p2),labels = c("Before","After"),font.label = list(size = 6),nrow = 2, ncol=1)
 
 
-## ----dpi = 200----------------------------------------------------------------
+## ----dpi = 96-----------------------------------------------------------------
 fdat$Phased_Absoprtion = NMRphasing(specDatIn = fdat$frequency_domain, method = "SPC_ADSM") 
 
 p2 = ggplot(fdat, aes(x = ppm, y = Phased_Absoprtion)) +
@@ -148,7 +148,7 @@ p2 = ggplot(fdat, aes(x = ppm, y = Phased_Absoprtion)) +
 ggarrange(plotlist = list(p1,p2),labels = c("Before","After"),font.label = list(size = 6),nrow = 2, ncol=1)
 
 
-## ----dpi = 200----------------------------------------------------------------
+## ----dpi = 96-----------------------------------------------------------------
 fdat$Phased_Absoprtion = NMRphasing(specDatIn = fdat$frequency_domain, method = "MPC_ADSM") 
 
 p2 = ggplot(fdat, aes(x = ppm, y = Phased_Absoprtion)) +
