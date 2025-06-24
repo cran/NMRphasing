@@ -2,7 +2,7 @@ Package: NMRphasing
 Type: Package
 Title: Phase Error Correction and Baseline Correction for One
         Dimensional ('1D') 'NMR' Data
-Version: 1.0.6
+Version: 1.0.7
 Authors@R: person("Aixiang","Jiang", role = c("aut", "cre", "cph"), email = "aijiang@bccrc.ca", comment = c(ORCID = "0000-0002-6153-7595"))
 Maintainer: Aixiang Jiang <aijiang@bccrc.ca>
 Depends: R (>= 4.3.0)
@@ -15,7 +15,8 @@ Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.3.2
 NeedsCompilation: no
-Packaged: 2024-12-17 21:26:50 UTC; jiang
-Author: Aixiang Jiang [aut, cre, cph] (<https://orcid.org/0000-0002-6153-7595>)
+Packaged: 2025-06-23 20:07:47 UTC; aijiang
+Author: Aixiang Jiang [aut, cre, cph] (ORCID:
+    <https://orcid.org/0000-0002-6153-7595>)
 Repository: CRAN
-Date/Publication: 2024-12-17 22:10:11 UTC
+Date/Publication: 2025-06-24 08:00:12 UTC

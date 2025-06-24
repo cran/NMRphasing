@@ -1,4 +1,4 @@
-76d232a4b5f93ec35c3d61ca00c45afe *DESCRIPTION
+210b7dfd19eb74032f21e534dd8dff81 *DESCRIPTION
 7e29db1840c258d8a92bc052bc564a83 *LICENSE
 0b2f7b7fa34b3e79a4b9b9c3b4b9540a *NAMESPACE
 99e8d5d81079b366b8fcd7ba7d0148e9 *R/AAM.R
@@ -33,10 +33,10 @@ f1211efdcb727ff492c61c1c3bd33e70 *R/peakDetectionCWTR.R
 5b23171a145aed13cb83401e9fa5161d *R/peakSearch.R
 890a5f202621cf18dfd6cb4784d9a1dd *R/phaseCorr2.r
 14ee01ff0030a60cc70b18edf74b64a8 *R/sumD.R
-d75463b8d8177a06773dd9f1cbc48f13 *build/vignette.rds
+51445426d8acbd7f0e1cad9903b4906b *build/vignette.rds
 81064af618c9f3c61b844bb34965e173 *data/fdat.rda
-067b5ffcbe063df14db6b8d048511d57 *inst/doc/NMRphasing_vignette.R
-9efe22e726fd9d1d6eb155a897519205 *inst/doc/NMRphasing_vignette.html
+16afc0ec7dbb09ddae88dbda443f2699 *inst/doc/NMRphasing_vignette.R
+d6a1710a72fd5a1babe428c4e7f02b40 *inst/doc/NMRphasing_vignette.html
 3d42b95f1e0508cecf2eea03443ef0b9 *inst/doc/NMRphasing_vignette.rmd
 037d7975bb1ebbcb4e371edc422d319c *man/MPC_AAM.Rd
 a4c1da35a535d4c89497fa96603715d2 *man/MPC_ADSM.Rd
